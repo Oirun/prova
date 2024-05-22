@@ -6,27 +6,31 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/view/index.html');
 });
 
 io.on('connection', (socket) => {
-    console.log('a user connected');
+  console.log('usuario conectado');
+  socket.on('disconnection', () =>{
+    io.emit('disconnect')
+  })
 });
 
 io.emit('some event', { someProperty: 'some value', otherProperty: 'other value' });
 
 io.on('connection', (socket) => {
-    socket.broadcast.emit('hi');
-  });
+  socket.broadcast.emit('hi');
+});
 
 io.on('connection', (socket) => {
-    socket.on('chat message', (msg) => {
-      io.emit('chat message', msg);
-    });
+  socket.on('conectado', (nome) => {
+    io.emit('conectado', nome);
+  })
+  socket.on('chat message', (msg) => {
+    io.emit('chat message', msg);
   });
-
-
+});
 
 server.listen(3000, () => {
-    console.log('listening on *:3000');
+  console.log('listening on *:3000');
 });
