@@ -1,0 +1,47 @@
+[
+    {
+        "pergunta" : "Em Coral Island, para conseguir um esturjão em que época do ano e clima tem que estar para a pesca?",
+        "respostaA" : "Verão e tempestade",
+        "respostaB" : "Verão e ensolarado",
+        "respostaC" : "Primavera e ensolarado",
+        "respostaD" : "Inverno e tempestade",
+        "respostaCerta" : "respostaD",
+        "imagem" : "/images/Sturgeon.webp"
+    },
+    {
+        "pergunta" : "Em Coral Island, para conseguir fazer o prato Serabi para o templo, quais ingredientes serão necessários?",
+        "respostaA" : "Coco, Farinha de Arroz, Açúcar, Sal Gourmet",
+        "respostaB" : "Qualquer fruta, Farinha de Trigo, Xarope de Bordo",
+        "respostaC" : "Couve-Flor, Farinha, Batata",
+        "respostaD" : "Leite, Ovo",
+        "respostaCerta" : "respostaA",
+        "imagem" : "/images/Serabi.webp"
+    },
+    {
+        "pergunta" : "Em Stardew Valley, quanto tempo dura o festival do deserto?",
+        "respostaA" : "1 dia",
+        "respostaB" : "4 dias",
+        "respostaC" : "3 dias",
+        "respostaD" : "2 dias",
+        "respostaCerta" : "respostaC",
+        "imagem" : "/images/festival.png"
+    },
+    {
+        "pergunta" : "Em Stardew Valley, onde está escondido o short roxo do prefeito?",
+        "respostaA" : "Na casa do prefeito",
+        "respostaB" : "Na casa da Penny",
+        "respostaC" : "Na casa da Marnie",
+        "respostaD" : "Na casa da Jodie",
+        "respostaCerta" : "respostaC",
+        "imagem" : "/images/shortPrefeito.png"
+    },
+    {
+        "pergunta" : "Em Stardew Valley, qual é a fruta mais cara?",
+        "respostaA" : "Joia Doce",
+        "respostaB" : "Fruta Antiga",
+        "respostaC" : "Fruta Estrela",
+        "respostaD" : "Melão Rosa",
+        "respostaCerta" : "respostaA",
+        "imagem" : "/images/frutaRara.png"
+    }
+]

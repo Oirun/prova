@@ -1,0 +1,140 @@
+body {
+            margin: 0;
+            padding-bottom: 3rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        .box-chat {
+            /* width: 50rem; */
+            height: 30rem;
+            background-color: rgb(180, 220, 255);
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        #form {
+            background: rgba(0, 0, 0, 0.15);
+            /* padding: 0.25rem; */
+            position: fixed;
+            bottom: 1rem;
+            left: 17.6rem;
+            /* right: 0; */
+            display: flex;
+            height: 3rem;
+            box-sizing: border-box;
+            backdrop-filter: blur(10px);
+            width: 50rem;
+            margin: 0 auto;
+        }
+
+        #input {
+            border: none;
+            padding: 0 1rem;
+            flex-grow: 1;
+            border-radius: 2rem;
+            margin: 0.25rem;
+        }
+
+        #input:focus {
+            outline: none;
+        }
+
+        #form>button {
+            background: #333;
+            border: none;
+            padding: 0 1rem;
+            margin: 0.25rem;
+            border-radius: 3px;
+            outline: none;
+            color: #fff;
+        }
+
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #messages>li {
+            padding: 0.5rem 1rem;
+            width: 100%;
+        }
+
+        #messages>li:nth-child(odd) {
+            background: rgb(212, 235, 255);
+        }
+
+        .box-chat-ul {
+            width: 50%;
+            height: 50%;
+            margin: 0 auto;
+            padding-top: 25px;
+
+        }
+
+        /*  CARD  */
+
+        .container-card {
+            left: 0;
+            /* width: 50rem; */
+            /* height: 30rem; */
+            background: #fff;
+            border-radius: 15px;
+        }
+
+        .img-esquerda {
+            background: rgb(250, 126, 126);
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .img-esquerda img {
+            margin: 0;
+            width: 70%;
+            height: 50%;
+        }
+
+        .div-perguntas {
+            background: #FFF;
+            margin: 0;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+
+        .respostas .btn-primary {
+            font-size: 13px;
+            margin: 0 auto;
+            margin-top: 10px
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Poetsen+One&display=swap');
+
+        .titulo-pergunta {
+            text-align: center;
+            margin: 0 auto;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        .pergunta {
+            margin-left: 1rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        #imgQuiz {
+            width: 15rem;
+            height: 15rem;
+        }
+
+        .comecar {
+            margin-top: 20%;
+            margin-left: 40%;
+        }
+
+        #nome {
+            border: 1px solid rgb(100, 100, 100);
+        }
