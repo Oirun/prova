@@ -100,8 +100,8 @@ function criandoCard(pergunta) {
             respostasErradas++
         }
         document.getElementById("card-pergunta").remove()
-        document.getElementById("pontuacaoDoJogadoreCerta").innerHTML = "Certa - "+ respostasCertas
-        document.getElementById("pontuacaoDoJogadoreErrada").innerHTML = "Errada - "+respostasErradas
+        document.getElementById("pontuacaoDoJogadoreCerta").innerHTML = "Certas - "+ respostasCertas
+        document.getElementById("pontuacaoDoJogadoreErrada").innerHTML = "Erradas - "+respostasErradas
         mostrarCard()
     }
     buttonB.onclick = function () {
@@ -122,8 +122,8 @@ function criandoCard(pergunta) {
             respostasErradas++
         }
         document.getElementById("card-pergunta").remove()
-        document.getElementById("pontuacaoDoJogadoreCerta").innerHTML = "Certa - "+ respostasCertas
-        document.getElementById("pontuacaoDoJogadoreErrada").innerHTML = "Errada - "+respostasErradas
+        document.getElementById("pontuacaoDoJogadoreCerta").innerHTML = "Certas - "+ respostasCertas
+        document.getElementById("pontuacaoDoJogadoreErrada").innerHTML = "Erradas - "+respostasErradas
         mostrarCard()
     }
     buttonC.onclick = function () {
@@ -144,8 +144,8 @@ function criandoCard(pergunta) {
             respostasErradas++
         }
         document.getElementById("card-pergunta").remove()
-        document.getElementById("pontuacaoDoJogadoreCerta").innerHTML = "Certa - "+ respostasCertas
-        document.getElementById("pontuacaoDoJogadoreErrada").innerHTML = "Errada - "+respostasErradas
+        document.getElementById("pontuacaoDoJogadoreCerta").innerHTML = "Certas - "+ respostasCertas
+        document.getElementById("pontuacaoDoJogadoreErrada").innerHTML = "Erradas - "+respostasErradas
         mostrarCard()
     }
     buttonD.onclick = function () {
@@ -166,8 +166,8 @@ function criandoCard(pergunta) {
             respostasErradas++
         }
         document.getElementById("card-pergunta").remove()
-        document.getElementById("pontuacaoDoJogadoreCerta").innerHTML = "Certa - "+ respostasCertas
-        document.getElementById("pontuacaoDoJogadoreErrada").innerHTML = "Errada - "+respostasErradas
+        document.getElementById("pontuacaoDoJogadoreCerta").innerHTML = "Certas - "+ respostasCertas
+        document.getElementById("pontuacaoDoJogadoreErrada").innerHTML = "Erradas - "+respostasErradas
         mostrarCard()
     }
 

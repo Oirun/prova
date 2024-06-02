@@ -43,5 +43,32 @@
         "respostaD" : "Melão Rosa",
         "respostaCerta" : "respostaA",
         "imagem" : "/images/frutaRara.png"
+    },
+    {
+        "pergunta" : "Em Coral Island, em que estação do ano se cultiva a blueberry e em quantos dias ela cresce?",
+        "respostaA" : "Primavera e 6 dias",
+        "respostaB" : "Inverno e 10 dias",
+        "respostaC" : "Outono e 8 dias",
+        "respostaD" : "Verão e 10 dias",
+        "respostaCerta" : "respostaD",
+        "imagem" : "/images/Blueberry.webp"
+    },
+    {
+        "pergunta" : "Em Stardew Valley, no enigma do sapo, ao o que ele se refere quando diz: 'coisa de cócega amarela… Coisa que dá se acenar ao vento.'?",
+        "respostaA" : "Feno",
+        "respostaB" : "Trigo",
+        "respostaC" : "Aveia",
+        "respostaD" : "Mão",
+        "respostaCerta" : "respostaB",
+        "imagem" : "/images/sapo.png"
+    },
+    {
+        "pergunta" : "Em Stardew Valley, ainda no enigma do sapo, ao o que ele se refere quando diz: 'fazer a fruta moída, mas fazer a respiração feder.'?",
+        "respostaA" : "Peido",
+        "respostaB" : "Jaca",
+        "respostaC" : "Alho",
+        "respostaD" : "Cebola",
+        "respostaCerta" : "respostaC",
+        "imagem" : "/images/sapo.png"
     }
 ]
