@@ -12,48 +12,76 @@ const bodyParser = require('body-parser');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'view')));
 
-
-// Middleware para analisar o corpo das requisições como JSON
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-  console.log(__dirname + '/view/index.html')
   res.sendFile(__dirname + '/view/index.html');
 });
 
 app.post('/add', (req, res) => {
   const newObject = req.body;
-  console.log(path.join(__dirname, 'public', 'json/jogadores.json'))
-  // Caminho do arquivo JSON
+  //console.log(path.join(__dirname, 'public', 'json/jogadores.json'))
   const jsonFilePath = path.join(__dirname, 'public', 'json/jogadores.json');
 
-  // Lendo o arquivo JSON existente
   fs.readFile(jsonFilePath, 'utf8', (err, data) => {
     if (err) {
       return res.status(500).send('Erro ao ler o arquivo JSON.');
     }
 
-    // Parseando o conteúdo JSON existente
     const jsonData = JSON.parse(data);
-    // Adicionando o novo objeto ao array
     
-    console.log(jsonData.length)
-    if (jsonData.length > 1) {
+    //console.log(jsonData)
+    let cont = 0
+    if (jsonData.length >= 1) {
       for (let i = 0; i < jsonData.length; i++) {
-        console.log(jsonData[i].nome, newObject.nome)
         if (jsonData[i].nome === newObject.nome) {
-          jsonData.splice(i, 1);
+          console.log(jsonData[i].nome, newObject.nome)
+          // jsonData.splice(i, 1);
+          cont++
           break;
         }
       }
     }
-    jsonData.push(newObject);
-    // Escrevendo de volta ao arquivo JSON
+
+    //console.log(cont)
+    if (cont == 0) {
+      jsonData.push(newObject);
+    }
+    
     fs.writeFile(jsonFilePath, JSON.stringify(jsonData, null, 2), (err) => {
       if (err) {
         return res.status(500).send('Erro ao escrever no arquivo JSON.');
       }
       res.send('Objeto adicionado com sucesso!');
+    });
+  });
+});
+
+app.patch('/addPontuacao', (req, res) => {
+  const newObject = req.body;
+  const jsonFilePath = path.join(__dirname, 'public', 'json/jogadores.json');
+
+  // Lendo o arquivo JSON
+  fs.readFile(jsonFilePath, 'utf8', (err, data) => {
+    if (err) {
+      return res.status(500).send('Erro ao ler o arquivo JSON.');
+    }
+
+    // Convertendo Json
+    const jsonData = JSON.parse(data);
+
+    const existingPlayerIndex = jsonData.findIndex(player => player.nome === newObject.nome);
+
+    if (existingPlayerIndex !== -1) {
+      jsonData[existingPlayerIndex].acertos = newObject.acertos;
+      jsonData[existingPlayerIndex].tempo = newObject.tempo;
+    } 
+  
+    fs.writeFile(jsonFilePath, JSON.stringify(jsonData, null, 2), (err) => {
+      if (err) {
+        return res.status(500).send('Erro ao escrever no arquivo JSON.');
+      }
+      res.send(jsonData);
     });
   });
 });
@@ -86,7 +114,7 @@ app.get('/sair', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-  console.log('usuario conectado');
+  //console.log('usuario conectado');
   socket.on('disconnection', () => {
     io.emit('disconnect')
   })
@@ -100,7 +128,7 @@ io.on('connection', (socket) => {
 
 io.on('connection', (socket) => {
   socket.on('conectado', (nome) => {
-    io.emit('conectado', nome);
+    socket.emit('conectado', nome);
 
     // json.push(JSON.stringify(jsonJogador))
   })

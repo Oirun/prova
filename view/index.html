@@ -20,10 +20,19 @@
     <script src="js/funcoes.js"></script>
 </head>
 
-<body>
+<body style="background: #212529;">
+    <nav class="navbar bg-body-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img alt="Logo" width="50" height="50" class="d-inline-block align-text-top" src="/images/quiz.webp"
+                    alt="">
+            </a>
+            <button class="btn btn-primary btn-lg px-4 gap-3 mt-3" id="sair" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Sair." type="button"><i
+                    class="bi bi-box-arrow-right"></i></button>
+        </div>
+    </nav>
 
     <div class="px-4 pt-3 mt-3 text-center">
-        <img class="d-block mx-auto mb-4" id="imgQuiz" src="/images/quiz.webp" alt="">
         <h1 class="display-5 fw-bold text-body-emphasis" id="tituloQuiz">Bem vindo ao Quiz Manu</h1>
         <div class="col-lg-6 mx-auto">
             <p class="lead mb-4" id="paragrafo-instrucao">Esse é um quiz para saber o seu conhecimento nos jogos de
@@ -31,12 +40,11 @@
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                 <form id="form-bem-vindo">
                     <div>
-                        <label for="nome">Informe o seu nome para começar a jogar</label>
-                        <input type="text" class="form-control" id="nome">
+                        <label for="nome" id="nome-label">Informe o seu nome para começar a jogar</label>
+                        <input type="text" class="form-control" id="nome" maxlength="10">
                     </div>
                     <div>
-                        <button class="btn btn-primary btn-lg px-4 gap-3 mt-3" id="nome-enviar" type="button"><i
-                                class="bi bi-send"></i></button>
+                        <button class="btn btn-primary btn-lg px-4 gap-3 mt-3" id="nome-enviar" type="button" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Entrar."><i class="bi bi-send"></i></button>
                     </div>
                 </form>
             </div>
@@ -44,13 +52,22 @@
         </div>
     </div>
 
-    <div class="container d-none" id="pontuacoes">
-        <span id="pontuacaoNome">Pontuação -</span>
-        <div>
-            <span id="circuloDoJogador" class="d-inline-block bg-success rounded-circle p-1"></span>
-            <span id="pontuacaoDoJogadoreCerta">Certas - 0</span>
-            <span id="pontuacaoDoJogadoreErrada">Erradas - 0</span>
+    <div class="container row g-3 d-none" id="pontuacoes">
+        <div class="col-10">
+            <span id="pontuacaoNome">Pontuação -</span>
+            <div>
+                <span id="circuloDoJogador" class="d-inline-block bg-success rounded-circle p-1"></span>
+                <span id="pontuacaoDoJogadoreCerta">Certas - 0</span>
+                <span id="pontuacaoDoJogadoreErrada">Erradas - 0</span>
+            </div>
         </div>
+        <div class="col-2">
+            <div class="cronometro">
+                <span id="horas">00</span><span class="doisPontos">:</span><span id="minuto">00</span><span
+                    class="doisPontos">:</span><span id="segundo">00</span>
+            </div>
+        </div>
+
     </div>
 
     <div class="container box-chat" id="chat-box" style="display: none;">
@@ -58,44 +75,95 @@
         <div class="container box-chat-ul">
             <h4 class="titulo-pergunta mb-5">Pergunta</h4>
             <div id="messages">
-                <button type="button" id="pronto" class="btn btn-outline-primary btn-lg comecar">Começar</button>
-                <button type="button" id="sair" class="btn btn-outline-primary btn-lg comecar d-none">Desconectar</button>
+                <button type="button" id="pronto" class="btn btn-outline-primary btn-lg comecar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Clique para começar a jogar.">Começar</button>
             </div>
         </div>
-
-        <!-- <form id="form" action="">
-            <input id="input" autocomplete="off" /><button>Enviar</button>
-        </form> -->
     </div>
 
+    <button type="button" class="btn btn-primary d-none" id="abrir-pontuacao" data-bs-toggle="modal"
+        data-bs-target="#modal-pontuacao-final">
+        Abrir Modal
+    </button>
+
+
+    <div class="modal fade" id="modal-pontuacao-final" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Pontuação Final</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="row g-3">
+                                <div class="col-1">
+                                    <i class="bi bi-check2-square check-modal"></i>
+                                </div>
+                                <div class="col-10">
+                                    <h3>Perguntas Acertadas</h3>
+                                </div>
+                            </div>
+                            <input type="checkbox" id="pergunta_1" class="form-check-input radio-pergunta me-3 ms-1"
+                                disabled>
+                            <input type="checkbox" id="pergunta_2" class="form-check-input radio-pergunta me-3"
+                                disabled>
+                            <input type="checkbox" id="pergunta_3" class="form-check-input radio-pergunta me-3"
+                                disabled>
+                            <input type="checkbox" id="pergunta_4" class="form-check-input radio-pergunta me-3"
+                                disabled>
+                            <input type="checkbox" id="pergunta_5" class="form-check-input radio-pergunta me-3"
+                                disabled>
+                            <input type="checkbox" id="pergunta_6" class="form-check-input radio-pergunta me-3"
+                                disabled>
+                            <input type="checkbox" id="pergunta_7" class="form-check-input radio-pergunta me-3"
+                                disabled>
+                            <input type="checkbox" id="pergunta_8" class="form-check-input radio-pergunta me-3"
+                                disabled>
+                            <input type="checkbox" id="pergunta_9" class="form-check-input radio-pergunta me-3"
+                                disabled>
+                            <input type="checkbox" id="pergunta_10" class="form-check-input radio-pergunta me-3"
+                                disabled>
+
+                            <img src="images/Enthusiastic-cuate.png" class="imageParabens" alt="">
+                        </div>
+                        <div class="col-6 separador">
+                            <div class="row g-3">
+                                <div class="col-1">
+                                    <i class="bi bi-list-ol check-modal"></i>
+                                </div>
+                                <div class="col-10">
+                                    <h3>Rank</h3>
+                                </div>
+                            </div>
+                            <ul class="list-group list-group-numbered" id="lista-de-rank">
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
 
     <script>
+
         var socket = io();
 
         var messages = document.getElementById('messages');
         var form = document.getElementById('form');
         var input = document.getElementById('nome');
 
-        document.getElementById("sair").onclick = async function () {
-            Swal.fire({
-                    title: "Saindo",
-                    text: "Obrigada por participar do jogo, qualquer coisa é só voltar!",
-                    icon: "info"
-                })
-                await fetch('/sair')
-                .then(response => response.text())
-                .then(data => {
-                    console.log(data)
-                })
-                .catch(error => {
-                    console.error('Erro:', error);
-                });
+        document.getElementById("sair").onclick = function () {
+            window.location.reload()
         }
 
+        // conectando ao servidor
         document.getElementById("nome-enviar").onclick = function () {
-            if (document.getElementById("nome").value == "") {
+            if (document.getElementById("nome").value.trim() == "") {
                 Swal.fire({
                     title: "Nome Vazio NUM PODE",
                     text: "Campo nome vazio, preencha para começar a jogar",
@@ -104,7 +172,6 @@
             } else {
                 socket.emit('conectado', document.getElementById("nome").value)
             }
-
         }
 
         document.getElementById("nome-enviar").addEventListener('submit', function (e) {
@@ -137,10 +204,46 @@
 
         })
 
+        // funcao para o cronometro
+        let segundos = 0;
+        let minutos = 0;
+
+        function segundo() {
+            segundos++;
+            if (segundos == 60) {
+                minutos++;
+                segundos = 0;
+                document.getElementById('minuto').innerHTML = minutos
+            }
+            document.getElementById('segundo').innerHTML = segundos
+        }
+        var intervalo
+        function pararContagem() {
+            segundos = 0
+            minutos = 0
+            clearInterval(intervalo)
+        }
+
         var cores = ["success", "primary", "danger", "warning"]
         let cor
         // Verificando cores
+
         document.getElementById("pronto").onclick = async function () {
+            perguntasFeitas = 0
+            respostasCertas = 0
+            respostasErradas = 0
+            perguntasAcertadas = []
+            //------------ zerando componentes para um novo jogo
+            document.getElementById("pontuacaoDoJogadoreCerta").innerHTML = "Certas - 0"
+            document.getElementById("pontuacaoDoJogadoreErrada").innerHTML = "Erradas - 0"
+            document.getElementById("horas").innerHTML = "00"
+            document.getElementById("minuto").innerHTML = "00"
+            document.getElementById("segundo").innerHTML = "00"
+
+            //-------------- iniciando contagem
+            intervalo = setInterval(function () { segundo() }, 1000)
+
+            //---------- pegando a cor para o jogador
             let cont = 0
             await fetch("/data")
                 .then(response => response.json())
@@ -159,11 +262,15 @@
                     }
                 })
 
+            //------------ adicionando um novo jogador ao json jogadores
             let obj = {
                 "nome": document.getElementById("user").dataset.nome,
-                "cor": cores[cont]
+                "cor": cores[cont],
+                "acertos": 0,
+                "tempo": 0
             }
-            //criando pontuacao
+
+            //------------- criando pontuacao com a requuisicao para o servidor
             await fetch('/add', {
                 method: 'POST',
                 headers: {
@@ -177,7 +284,7 @@
                     document.getElementById("circuloDoJogador").classList.remove("bg-success")
                     document.getElementById("circuloDoJogador").classList.add("bg-" + obj.cor)
                     document.getElementById('pontuacaoNome').innerText = "Pontuação - " + obj.nome;
-                    document.getElementById("pronto").remove()
+                    document.getElementById("pronto").classList.add("d-none")
                     mostrarCard()
                 })
                 .catch(error => {
@@ -185,10 +292,11 @@
                 });
         }
 
-
-        
     </script>
-
+    <script>
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    </script>
 
 </body>
 

@@ -138,3 +138,62 @@ body {
         #nome {
             border: 1px solid rgb(100, 100, 100);
         }
+
+        .form-check-input {
+            border-radius: 50% !important;
+            border: 1px solid rgb(43, 42, 42);
+        }
+
+        .certa:checked {
+            background-color: #2eb374 !important;
+            border-color: #71d8a8 !important;
+        }
+
+        .errada:checked {
+            background-color: #e74b5b !important;
+            border-color: #f0959e !important;
+        }
+
+        .separador {
+            border-left: 1px solid black;
+        }
+
+        .check-modal {
+            font-size: 1.7rem !important;
+            color: #0d6efd;
+        }
+
+        .imageParabens {
+            width: 20rem;
+            height: 20rem;
+        }
+
+        .cronometro {
+            display: flex;
+            justify-content: end;
+        }
+
+        #pontuacoes {
+            margin: 0 auto;
+        }
+
+        .titulo-nav {
+            margin-top: 2rem !important;
+            color: #fff;
+        }
+
+        #paragrafo-instrucao,
+        #tituloQuiz,
+        #nome-label,
+        #segundo,
+        #minuto,
+        #horas,
+        #pontuacaoDoJogadoreErrada,
+        #pontuacaoDoJogadoreCerta,
+        #pontuacaoNome,
+        #circuloDoJogador,
+        #user,
+        .doisPontos {
+            color: #fff !important;
+        }
+        

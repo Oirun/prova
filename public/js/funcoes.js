@@ -2,8 +2,9 @@
 var perguntasFeitas = 0
 var respostasCertas = 0
 var respostasErradas = 0
-async function mostrarCard(params) {
-
+var perguntasAcertadas = []
+async function mostrarCard() {
+    
     await fetch("/perguntas")
         .then(response => response.json())
         .then(data => {
@@ -15,11 +16,11 @@ async function mostrarCard(params) {
                     mensagem = "Parabéns, você acertou todas as questões"
                     titulo = "Parabéns"
                     icone = "success"
-                }else if (respostasCertas == 0) {
+                } else if (respostasCertas == 0) {
                     mensagem = "Não foi dessa vez, quem sabe da próxima você acerta alguma coisa!"
                     titulo = "Poxa"
                     icone = "error"
-                }else{
+                } else {
                     mensagem = "Você acertou algumas questões, mas da pra melhorar"
                     titulo = "Acertou algumas"
                     icone = "success"
@@ -29,12 +30,83 @@ async function mostrarCard(params) {
                     text: mensagem,
                     icon: icone
                 })
+                console.log(perguntasAcertadas)
+                pararContagem()
+                quaisPerguntasAcertou()
+
+                perguntasAcertadas.pop()
+                document.getElementById("abrir-pontuacao").onclick = function () {
+                    fazerRank()
+                    document.getElementById("pronto").classList.remove("d-none")
+                    document.getElementById("pronto").innerHTML = "Recomeçar"
+                }
+                document.getElementById("abrir-pontuacao").click()
+
             } else {
                 let card = criandoCard(data[perguntasFeitas])
                 document.getElementById("messages").appendChild(card)
                 perguntasFeitas++
             }
         })
+}
+
+async function fazerRank() {
+    console.log(document.getElementById("pontuacaoNome").innerHTML.split(" - ")[1])
+
+    let obj = {
+        "nome": document.getElementById("pontuacaoNome").innerHTML.split(" - ")[1],
+        "acertos": respostasCertas,
+        "tempo": document.getElementById("horas").innerHTML+":"+document.getElementById("minuto").innerHTML+":"+document.getElementById("segundo").innerHTML
+    }
+    await fetch('/addPontuacao', {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(obj),
+    })
+        .then(response => response.text())
+        .then(data => {
+            console.log(data)
+            let json = JSON.parse(data).sort(compararDados)
+            console.log(json)
+
+            
+            document.getElementById("lista-de-rank").innerHTML = ""
+            json.forEach(jogador => {
+                let li = document.createElement("li")
+                let div1 = document.createElement("div")
+                let div2 = document.createElement("div")
+
+                li.classList = "list-group-item d-flex justify-content-between align-items-start"
+                div1.classList = "ms-2 me-auto"
+                div2.classList = "fw-bold"
+                div1.innerHTML = jogador.nome 
+                div2.innerHTML = jogador.acertos +" acertos"+ " - " +jogador.tempo+" tempo"
+
+                div1.appendChild(div2)
+                li.appendChild(div1)
+                document.getElementById("lista-de-rank").appendChild(li)
+            });
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+        });
+}
+
+function compararDados(a, b) {
+    if (a.acertos > b.acertos) return -1;
+    if (a.acertos < b.acertos) return 1;
+
+    var tempoA = a.tempo.split(":").map(Number);
+    var tempoB = b.tempo.split(":").map(Number);
+
+    for (var i = 0; i < 3; i++) {
+        if (tempoA[i] < tempoB[i]) return -1;
+        if (tempoA[i] > tempoB[i]) return 1;
+    }
+
+    return 0;
 }
 
 function criandoCard(pergunta) {
@@ -91,6 +163,7 @@ function criandoCard(pergunta) {
                 icon: "success"
             })
             respostasCertas++
+            perguntasAcertadas.push(respostasCertas)
         } else {
             Swal.fire({
                 title: "Errada a resposta",
@@ -100,8 +173,8 @@ function criandoCard(pergunta) {
             respostasErradas++
         }
         document.getElementById("card-pergunta").remove()
-        document.getElementById("pontuacaoDoJogadoreCerta").innerHTML = "Certas - "+ respostasCertas
-        document.getElementById("pontuacaoDoJogadoreErrada").innerHTML = "Erradas - "+respostasErradas
+        document.getElementById("pontuacaoDoJogadoreCerta").innerHTML = "Certas - " + respostasCertas
+        document.getElementById("pontuacaoDoJogadoreErrada").innerHTML = "Erradas - " + respostasErradas
         mostrarCard()
     }
     buttonB.onclick = function () {
@@ -113,6 +186,7 @@ function criandoCard(pergunta) {
                 icon: "success"
             })
             respostasCertas++
+            perguntasAcertadas.push(respostasCertas)
         } else {
             Swal.fire({
                 title: "Errada a resposta",
@@ -122,8 +196,8 @@ function criandoCard(pergunta) {
             respostasErradas++
         }
         document.getElementById("card-pergunta").remove()
-        document.getElementById("pontuacaoDoJogadoreCerta").innerHTML = "Certas - "+ respostasCertas
-        document.getElementById("pontuacaoDoJogadoreErrada").innerHTML = "Erradas - "+respostasErradas
+        document.getElementById("pontuacaoDoJogadoreCerta").innerHTML = "Certas - " + respostasCertas
+        document.getElementById("pontuacaoDoJogadoreErrada").innerHTML = "Erradas - " + respostasErradas
         mostrarCard()
     }
     buttonC.onclick = function () {
@@ -135,6 +209,7 @@ function criandoCard(pergunta) {
                 icon: "success"
             })
             respostasCertas++
+            perguntasAcertadas.push(respostasCertas)
         } else {
             Swal.fire({
                 title: "Errada a resposta",
@@ -144,8 +219,8 @@ function criandoCard(pergunta) {
             respostasErradas++
         }
         document.getElementById("card-pergunta").remove()
-        document.getElementById("pontuacaoDoJogadoreCerta").innerHTML = "Certas - "+ respostasCertas
-        document.getElementById("pontuacaoDoJogadoreErrada").innerHTML = "Erradas - "+respostasErradas
+        document.getElementById("pontuacaoDoJogadoreCerta").innerHTML = "Certas - " + respostasCertas
+        document.getElementById("pontuacaoDoJogadoreErrada").innerHTML = "Erradas - " + respostasErradas
         mostrarCard()
     }
     buttonD.onclick = function () {
@@ -157,6 +232,7 @@ function criandoCard(pergunta) {
                 icon: "success"
             })
             respostasCertas++
+            perguntasAcertadas.push(respostasCertas)
         } else {
             Swal.fire({
                 title: "Errada a resposta",
@@ -166,8 +242,8 @@ function criandoCard(pergunta) {
             respostasErradas++
         }
         document.getElementById("card-pergunta").remove()
-        document.getElementById("pontuacaoDoJogadoreCerta").innerHTML = "Certas - "+ respostasCertas
-        document.getElementById("pontuacaoDoJogadoreErrada").innerHTML = "Erradas - "+respostasErradas
+        document.getElementById("pontuacaoDoJogadoreCerta").innerHTML = "Certas - " + respostasCertas
+        document.getElementById("pontuacaoDoJogadoreErrada").innerHTML = "Erradas - " + respostasErradas
         mostrarCard()
     }
 
@@ -187,4 +263,22 @@ function criandoCard(pergunta) {
     div.appendChild(divPerguntas)
 
     return div
+}
+
+function quaisPerguntasAcertou() {
+    let radioPerguntas = document.querySelectorAll(".radio-pergunta")
+
+    radioPerguntas.forEach(radios => {
+
+        if (perguntasAcertadas.includes(parseInt(radios.id.split("_")[1]))) {
+            radios.checked = true
+            radios.classList.add("certa")
+            console.log("TRUE")
+            return
+        } else {
+            radios.checked = true
+            radios.classList.add("errada")
+            return
+        }
+    });
 }

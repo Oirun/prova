@@ -70,5 +70,23 @@
         "respostaD" : "Cebola",
         "respostaCerta" : "respostaC",
         "imagem" : "/images/sapo.png"
+    },
+    {
+        "pergunta" : "Em Coral Island, qual animal produz o café mais caro do mundo?",
+        "respostaA" : "Porco",
+        "respostaB" : "Luwak",
+        "respostaC" : "Cabra",
+        "respostaD" : "Lhama",
+        "respostaCerta" : "respostaB",
+        "imagem" : "/images/Gesha_coffee_bean.webp"
+    },
+    {
+        "pergunta" : "Em Coral Island, quantos conjuntos precisa completar para liberar a floresta profunda?",
+        "respostaA" : "13",
+        "respostaB" : "10",
+        "respostaC" : "12",
+        "respostaD" : "14",
+        "respostaCerta" : "respostaD",
+        "imagem" : "/images/Healing_The_World.webp"
     }
 ]
