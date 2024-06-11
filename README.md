@@ -14,6 +14,7 @@ Olá, eu sou a Manuela Macena dos Santos. Bem-vindo ao meu repositório!
 - Para iniciar o projeto, tem que pegar o link desse git
 - Dar um clone na pasta main
 - Abrir o cmd, pode ser no VS Code
+- Digitar "npm update"
 - Digitar o comando "node index.js"
 - Abrir o navegador
 - Digitar na url "localhost:3000"
